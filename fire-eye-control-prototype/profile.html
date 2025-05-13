@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心 - 火眼智控</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#D93F3F',
+            secondary: '#2563EB',
+            neutral: {
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              300: '#D1D5DB',
+              400: '#9CA3AF',
+              500: '#6B7280',
+              600: '#4B5563',
+              700: '#374151',
+              800: '#1F2937',
+              900: '#111827',
+            },
+            success: '#10B981',
+            warning: '#F59E0B',
+            danger: '#EF4444',
+            info: '#3B82F6',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 4px 20px rgba(0, 0, 0, 0.08)',
+            'card-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
+          }
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .tab-active {
+        @apply text-primary border-primary;
+      }
+      .tab-inactive {
+        @apply text-neutral-500 border-transparent;
+      }
+      .card-transition {
+        @apply transition-all duration-300 ease-in-out;
+      }
+      .btn-primary {
+        @apply bg-primary text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 transition-all duration-200;
+      }
+      .btn-secondary {
+        @apply bg-white text-primary border border-primary font-medium py-2 px-4 rounded-lg shadow-sm hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary/20 active:scale-95 transition-all duration-200;
+      }
+      .input-field {
+        @apply w-full px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200;
+      }
+      .badge {
+        @apply text-xs font-medium px-2.5 py-0.5 rounded-full;
+      }
+      .badge-danger {
+        @apply bg-danger/10 text-danger;
+      }
+      .badge-warning {
+        @apply bg-warning/10 text-warning;
+      }
+      .badge-success {
+        @apply bg-success/10 text-success;
+      }
+      .badge-info {
+        @apply bg-info/10 text-info;
+      }
+      .user-menu-item {
+        @apply flex items-center justify-between py-3 px-4 border-b border-neutral-100 hover:bg-neutral-50 transition-colors;
+      }
+      .user-menu-item-icon {
+        @apply flex items-center text-neutral-600;
+      }
+      .user-menu-item-text {
+        @apply ml-3 text-neutral-800;
+      }
+      .user-menu-item-badge {
+        @apply bg-primary text-white text-xs font-medium px-2 py-0.5 rounded-full;
+      }
+    }
+  </style>
+</head>
+<body class="bg-neutral-100 font-sans h-screen">
+  <!-- 顶部导航 -->
+  <header class="bg-white shadow-sm sticky top-0 z-10">
+    <div class="flex justify-between items-center px-4 py-3">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-user text-primary text-xl"></i>
+        <h1 class="text-lg font-semibold">个人中心</h1>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button class="text-neutral-600 hover:text-primary transition-colors">
+          <i class="fa-solid fa-cog"></i>
+        </button>
+        <button class="text-neutral-600 hover:text-primary transition-colors">
+          <i class="fa-solid fa-question-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容区 -->
+  <main class="px-4 py-4">
+    <!-- 用户信息卡片 -->
+    <div class="bg-white rounded-xl shadow-card overflow-hidden mb-6">
+      <div class="bg-primary p-4">
+        <div class="flex items-center">
+          <img src="https://picsum.photos/100/100?random=user" alt="用户头像" class="w-16 h-16 rounded-full object-cover border-2 border-white">
+          <div class="ml-4 text-white">
+            <h3 class="font-semibold">张消防</h3>
+            <p class="text-sm opacity-80">物业经理</p>
+          </div>
+          <div class="ml-auto">
+            <button class="bg-white text-primary text-xs font-medium py-1 px-3 rounded-full">
+              切换角色
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="p-4 border-t border-neutral-100">
+        <div class="grid grid-cols-3 gap-2 text-center">
+          <div>
+            <p class="text-2xl font-bold text-primary">28</p>
+            <p class="text-xs text-neutral-500">已完成巡检</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-warning">3</p>
+            <p class="text-xs text-neutral-500">待处理告警</p>
+          </div>
+          <div>
+            <p class="text-2xl font-bold text-info">85</p>
+            <p class="text-xs text-neutral-500">培训积分</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 用户菜单 -->
+    <div class="bg-white rounded-xl shadow-card mb-6">
+      <div class="user-menu-item">
+        <div class="user-menu-item-icon">
+          <i class="fa-solid fa-bell"></i>
+          <span class="user-menu-item-text">通知中心</span>
+        </div>
+        <div class="flex items-center">
+          <span class="user-menu-item-badge">5</span>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+      
+      <div class="user-menu-item">
+        <div class="user-menu-item-icon">
+          <i class="fa-solid fa-certificate"></i>
+          <span class="user-menu-item-text">我的证书</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+      
+      <div class="user-menu-item">
+        <div class="user-menu-item-icon">
+          <i class="fa-solid fa-medal"></i>
+          <span class="user-menu-item-text">积分商城</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+      
+      <div class="user-menu-item">
+        <div class="user-menu-item-icon">
+          <i class="fa-solid fa-comments"></i>
+          <span class="user-menu-item-text">意见反馈</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+      
+      <div class="user-menu-item border-b-0">
+        <div class="user-menu-item-icon">
+          <i class="fa-solid fa-question-circle"></i>
+          <span class="user-menu-item-text">帮助中心</span>
+        </div>
+        <div>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 切换角色 -->
+    <div class="bg-white rounded-xl shadow-card mb-6">
+      <h2 class="text-lg font-semibold p-4 border-b border-neutral-100">切换角色</h2>
+      
+      <div class="p-4">
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-primary/10 rounded-lg p-3 text-center card-transition hover:bg-primary/20">
+            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-building text-primary"></i>
+            </div>
+            <p class="text-sm font-medium text-primary">物业经理</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-lg p-3 text-center card-transition hover:bg-neutral-200">
+            <div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-user-tie text-neutral-600"></i>
+            </div>
+            <p class="text-sm font-medium text-neutral-600">巡检员</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-lg p-3 text-center card-transition hover:bg-neutral-200">
+            <div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-store text-neutral-600"></i>
+            </div>
+            <p class="text-sm font-medium text-neutral-600">商户</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-lg p-3 text-center card-transition hover:bg-neutral-200">
+            <div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-home text-neutral-600"></i>
+            </div>
+            <p class="text-sm font-medium text-neutral-600">居民</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-lg p-3 text-center card-transition hover:bg-neutral-200">
+            <div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-user-plus text-neutral-600"></i>
+            </div>
+            <p class="text-sm font-medium text-neutral-600">添加角色</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 关于我们 -->
+    <div class="bg-white rounded-xl shadow-card mb-6">
+      <h2 class="text-lg font-semibold p-4 border-b border-neutral-100">关于我们</h2>
+      
+      <div class="p-4">
+        <div class="flex items-center justify-between py-3 border-b border-neutral-100">
+          <span class="text-neutral-600">版本号</span>
+          <span class="text-neutral-800">v1.0.0</span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3 border-b border-neutral-100">
+          <span class="text-neutral-600">检查更新</span>
+          <span class="text-success flex items-center">
+            已是最新版本
+            <i class="fa-solid fa-check ml-1"></i>
+          </span>
+        </div>
+        
+        <div class="flex items-center justify-between py-3">
+          <span class="text-neutral-600">隐私政策</span>
+          <i class="fa-solid fa-chevron-right text-neutral-400"></i>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 退出登录 -->
+    <div class="text-center">
+      <button class="text-danger font-medium py-2 px-4 rounded-lg border border-danger/20 hover:bg-danger/5 transition-colors">
+        <i class="fa-solid fa-sign-out-alt mr-2"></i> 退出登录
+      </button>
+    </div>
+  </main>
+</body>
+</html>
+    
